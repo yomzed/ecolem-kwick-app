@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/yomzed/kwick-test-app/issues"
   },
-  "homepage": "https://github.com/yomzed/kwick-test-app#readme"
+  "homepage": "https://github.com/yomzed/kwick-test-app#readme",
+  "dependencies": {
+    "angular": "^1.6.1"
+  }
 }

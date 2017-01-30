@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html ng-app='kwick-app'>
+<head>
+	<title>Kwick test app</title>
+</head>
+<bod ng-controller="MainCtrl as main">
+<button ng-click="main.test()">Test Ping</button>
+<h1 class="response" ng-show="{{main.ok}}">YUP</h1>
+
+</body>
+<script src="node_modules/angular/angular.min.js"></script>
+<script src="scripts/main.js"></script>
+<script src="scripts/controllers.js"></script>
+</html>
