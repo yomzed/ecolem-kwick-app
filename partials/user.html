@@ -1,0 +1,21 @@
+<div class="login-form">
+	<div ng-hide="user.signup">
+		<h2>Connectez-vous</h2>
+		<form ng-submit="user.login()">
+			<input type="text" placeholder="Identifiant" required ng-model="user.logname">
+			<input type="password" placeholder="Mot de passe" required ng-model="user.logpass">
+			<button type="submit">Se connecter</button>
+			<button class="sign" ng-click="user.signup = true">S'inscrire</button>
+		</form>
+	</div>
+	<div ng-show="user.signup">
+		<h2>S'inscrire</h2>
+		<form ng-submit="user.signUp()">
+			<input type="text" ng-model="user.name" placeholder="Identifiant">
+			<input type="password" ng-model="user.pass" placeholder="Mot de passe">
+			<input type="password" ng-model="user.pass2" placeholder="Confirmez le mot de passe">
+			<button type="submit">S'inscrire</button>
+			<button ng-click="user.signup = false">Retour</button>
+		</form>
+	</div>
+</div>
