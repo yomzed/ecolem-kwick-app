@@ -9,23 +9,34 @@ Yoan Martinez
 let app = angular.module('kwick-app', []);
 
 app.config(function($sceDelegateProvider){
-	// Whitelist pour récupérer un JSONP sans problème
+	// Whitelist pour accéder à l'API sans erreur dans la console
 	 $sceDelegateProvider.resourceUrlWhitelist([
       'self',
       'http://greenvelvet.alwaysdata.net/**'
     ]);
 });
 
-// Service de vérification de l'état du serveur
-app.service('Ping', ['$http', function($http){
-		// Return true si le serveur est ok
-		this.test = function(){
-			var status = false;
+// Définition des vues
+app.directive('kwLogin', function(){
+	return {
+		restrict: 'E',
+		templateUrl: 'partials/user.html'
+	};
+})
+.directive('kwChat', function(){
+	return {
+		restrict: 'E',
+		templateUrl: 'partials/chat.html',
+	};
+});
 
-			$http.jsonp('http://greenvelvet.alwaysdata.net/kwick/api/ping').then(function(rep){
-				if(rep.data.result.ready){ status = true; }
-				return status;
-			});
-			
-		}
-}]);
+// Stockage des fonctions
+app.factory('kwFactory', function($http) {
+	return {
+		/* Récupération des données de l'API */
+		recupJson : function(url){
+			return $http.jsonp(url);
+		},
+
+	}
+});
