@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/yomzed/kwick-test-app#readme",
   "dependencies": {
-    "angular": "^1.6.1"
+    "angular": "^1.6.1",
+    "normalize.css": "^5.0.0"
   }
 }
