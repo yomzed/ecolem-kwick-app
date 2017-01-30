@@ -1,4 +1,6 @@
 <div class="login-form">
+
+<!-- Formulaire de login -->
 	<div ng-hide="user.signup">
 		<h2>Connectez-vous</h2>
 		<form ng-submit="user.login()">
@@ -8,6 +10,8 @@
 			<button class="sign" ng-click="user.signup = true">S'inscrire</button>
 		</form>
 	</div>
+
+<!-- Formulaire d'inscription -->
 	<div ng-show="user.signup">
 		<h2>S'inscrire</h2>
 		<form ng-submit="user.signUp()">
@@ -18,4 +22,5 @@
 			<button ng-click="user.signup = false">Retour</button>
 		</form>
 	</div>
+
 </div>

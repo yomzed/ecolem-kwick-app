@@ -1,20 +1,21 @@
 <!DOCTYPE html>
 <html ng-app='kwick-app'>
 <head>
+	<meta charset="utf-8">
 	<title>Kwick test app</title>
 	<link href="https://fonts.googleapis.com/css?family=Lato:400,400i,700,700i" rel="stylesheet">
 	<link rel="stylesheet" href="node_modules/normalize.css/normalize.css">
 	<link rel="stylesheet" href="styles/main.css">
 </head>
 <body ng-controller="MainCtrl as main">
-<!-- <button ng-click="main.test()">Test Ping</button> -->
-<h1>Kwick chat</h1>
+
+	<h1>Kwick chat</h1>
 
 <!-- Vue du login -->
-<kw-login ng-show="{{!$scope.token}}" ng-controller="UserCtrl as user"></kw-login>
+	<kw-login ng-show="{{!$scope.token}}" ng-controller="UserCtrl as user"></kw-login>
 
 <!-- Vue du chat -->
-<kw-chat ng-hide="{{!$scope.token}}"></kw-chat>
+	<kw-chat ng-hide="{{!$scope.token}}"></kw-chat>
 
 
 <script src="node_modules/angular/angular.min.js"></script>

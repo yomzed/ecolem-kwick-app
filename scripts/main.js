@@ -16,7 +16,7 @@ app.config(function($sceDelegateProvider){
     ]);
 });
 
-// Définition des vues
+/* Définition des vues */
 app.directive('kwLogin', function(){
 	return {
 		restrict: 'E',

@@ -5,13 +5,13 @@ Ecole multimédia - 30/01/2017
 Yoan Martinez
 ------------------------- */
 
-// Contrôleur principal
+/* Contrôleur principal */
 app.controller('MainCtrl',function($http, $scope) {
 	let main = this;
 
 	$scope.token = 0; // Token de connexion
 
-	// Test du ping de l'API
+	/* Test du ping de l'API */
 	$scope.pingTest = function() {
 		var status = false;
 		$http.jsonp('http://greenvelvet.alwaysdata.net/kwick/api/ping').then(function(rep){
@@ -21,13 +21,13 @@ app.controller('MainCtrl',function($http, $scope) {
 
 }) /* Fin contrôleur principal */
 
-// Contrôleur inscription/login
+/* Contrôleur inscription/login */
 .controller('UserCtrl', function($http, $scope, kwFactory) {
 	let user = this;
 
 	user.signup = false; // Flag d'affichage inscription/connexion
 
-	// Login
+	/* Login */
 	user.login = function() {
 		let url = 'http://greenvelvet.alwaysdata.net/kwick/api/login/'+user.logname+'/'+user.logpass;
 
@@ -38,10 +38,10 @@ app.controller('MainCtrl',function($http, $scope) {
 						 });
 	} /* Fin login */
 
-	// Inscription
+	/* Inscription */
 	user.signUp = function() {
-		/* Vérification mdp */
 		if(user.pass == user.pass2) {
+
 			let url = "http://greenvelvet.alwaysdata.net/kwick/api/signup/"+user.name+"/"+user.pass;
 
 			/* Appel API */
@@ -51,7 +51,7 @@ app.controller('MainCtrl',function($http, $scope) {
 							 });
 		} else {
 			alert('Les mots de passe renseignés ne correspondent pas');
-		} /* Fin vérification mdp */
-	}
+		}
+	} /* Fin inscription */
 
 });
