@@ -1,0 +1,19 @@
+{
+  "name": "kwick-test-app",
+  "version": "1.0.0",
+  "description": "A simple chat-app to learn how to use the Kwick API",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yomzed/kwick-test-app.git"
+  },
+  "author": "yomzed",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/yomzed/kwick-test-app/issues"
+  },
+  "homepage": "https://github.com/yomzed/kwick-test-app#readme"
+}
