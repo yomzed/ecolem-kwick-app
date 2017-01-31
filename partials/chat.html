@@ -1,10 +1,16 @@
-<h1>Vous êtes connecté au chat !</h1>
 <section class="chat">
-	<div class="chatWindow">
-		
+	<div class="chatWindow" id="scrollW">
+		<li ng-repeat="message in chat.messages | orderBy: 'timestamp'">
+			{{message.user_name}}<br>
+			{{message.content}}<br>
+			{{message.date}}
+		</li>
 	</div>
 	<div class="sendMess">
-		
+		<form ng-submit="chat.send()">
+			<input type="text" ng-model="chat.newMess">
+			<button class="btn send" type="submit">Send</button>
+		</form>
 	</div>
 </section>
 <section class="guestList">

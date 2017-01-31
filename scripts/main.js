@@ -67,7 +67,16 @@ app.factory('kwFactory', function($http, $rootScope) {
 			$rootScope.mess.status = true;
 			$rootScope.mess.detail = ucfirst(mess);
 			$rootScope.mess.nature = "valid";
-		}
+		},
+		/* Formatage du timestamp */
+		dateFormat : function(timestamp){
+			let date = new Date(timestamp*1000);
+			return date.toLocaleString('fr');
+		},
+		scrollAuto : function(){
+    let element = document.getElementById("scrollW");
+    element.scrollTop = element.scrollHeight;
+}
 	}
 });
 
