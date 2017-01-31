@@ -39,3 +39,12 @@ kw-login {
 	border : 2px solid #C63C59;
 	outline : 0;
 }
+
+.valid, .error {
+	width : 90%;
+	margin : 5px auto;
+	padding : 10px;
+}
+
+.valid { background-color : green; }
+.error { background-color : red; }

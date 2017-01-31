@@ -37,6 +37,35 @@ app.factory('kwFactory', function($http) {
 		recupJson : function(url){
 			return $http.jsonp(url);
 		},
-
+		/* Vérification de la validité du token */
+		verifToken : function(token, url){
+			if(token){
+				$http.jsonp(url+token).then(function(rep){
+					console.log(rep.data.result.status);
+					return rep.data.result.status;
+				});
+			} else {
+				console.log("No data");
+				return "failure";
+			}
+		},
+		/* Erreur et notification */
+		error : function(mess){
+			user.mess.status = true;
+			user.mess.detail = ucfirst(mess);
+			user.mess.nature = "error";
+		},
+		valid : function(mess){
+			user.mess.status = true;
+			user.mess.detail = ucfirst(mess);
+			user.mess.nature = "valid";
+		}
 	}
 });
+
+/* ucfirst de PHP importé au JS */
+function ucfirst(string){
+	string += " ";
+	let first = string.charAt(0).toUpperCase();
+	return first + string.substr(1);
+}

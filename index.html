@@ -12,10 +12,10 @@
 	<h1>Kwick chat</h1>
 
 <!-- Vue du login -->
-	<kw-login ng-show="{{!$scope.token}}" ng-controller="UserCtrl as user"></kw-login>
+	<kw-login ng-show="!$rootScope.token" ng-controller="UserCtrl as user"></kw-login>
 
 <!-- Vue du chat -->
-	<kw-chat ng-hide="{{!$scope.token}}"></kw-chat>
+	<kw-chat ng-show="$rootScope.token"></kw-chat>
 
 
 <script src="node_modules/angular/angular.min.js"></script>

@@ -6,52 +6,84 @@ Yoan Martinez
 ------------------------- */
 
 /* Contrôleur principal */
-app.controller('MainCtrl',function($http, $scope) {
+app.controller('MainCtrl',function($http, $rootScope, kwFactory) {
 	let main = this;
-
-	$scope.token = 0; // Token de connexion
-
-	/* Test du ping de l'API */
-	$scope.pingTest = function() {
-		var status = false;
-		$http.jsonp('http://greenvelvet.alwaysdata.net/kwick/api/ping').then(function(rep){
-			if(rep.data.result.ready){ return true; } else { return false; }
-		});
-	}
+	if(!$rootScope.token){$rootScope.token = 0;}
 
 }) /* Fin contrôleur principal */
 
 /* Contrôleur inscription/login */
-.controller('UserCtrl', function($http, $scope, kwFactory) {
+.controller('UserCtrl', function($http, $rootScope, kwFactory) {
 	let user = this;
-
+	user.mess = {
+								status : false, // Affichage d'une notif
+								detail : "", 		// Texte de la notif
+								nature : "" 		// "valid" ou "error"
+							}; 
 	user.signup = false; // Flag d'affichage inscription/connexion
 
 	/* Login */
 	user.login = function() {
+		user.mess.status = false;
 		let url = 'http://greenvelvet.alwaysdata.net/kwick/api/login/'+user.logname+'/'+user.logpass;
 
 		/* Appel API */
 		kwFactory.recupJson(url)
 						 .then(function(data) {
-						 	console.log(data.data);
+						 	if(data.data.result.status == 'done'){
+
+						 		/* Construction de la session */
+						 		$rootScope.user = { id   : data.data.result.id,
+																		login: user.logname };
+						 		$rootScope.token = data.data.result.token;
+
+						 		/* Vidage du formulaire */
+						 		let form = document.getElementById("loginForm");
+							 	form.reset();
+
+						 	} else if(data.data.result.status == 'failure'){
+						 		kwFactory.error(data.data.result.message);
+							}
 						 });
 	} /* Fin login */
 
 	/* Inscription */
 	user.signUp = function() {
 		if(user.pass == user.pass2) {
-
+			user.mess.status = false;
 			let url = "http://greenvelvet.alwaysdata.net/kwick/api/signup/"+user.name+"/"+user.pass;
 
 			/* Appel API */
 			kwFactory.recupJson(url)
 							 .then(function(data) {
-							 	/* some code here */
+							 	if(data.data.result.status == 'done'){
+
+							 		/* Vidage du formulaire */
+							 		let form = document.getElementById("loginForm");
+							 		form.reset();
+							 		/* Retour au login */
+							 		user.signup = false;
+
+							 	} else if(data.data.result.status == 'failure'){
+							 		/* Affichage de l'erreur */
+						 			kwFactory.error(data.data.result.message);
+							 	}
+							 	
 							 });
 		} else {
-			alert('Les mots de passe renseignés ne correspondent pas');
+			/* Affichage de l'erreur */
+			kwFactory.error("Password doesn't match");
 		}
 	} /* Fin inscription */
 
 });
+
+/* Réponse erreur token 
+Object
+kwick:
+	completed_in : "0.160"
+	status : "ok"
+	version : "1.0"
+	Object result :
+		message : "wrong token. Access denied"
+		status : "failure" */
