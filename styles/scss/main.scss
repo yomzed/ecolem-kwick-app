@@ -42,7 +42,6 @@ kw-chat .chat {
 		height : 80%;
 		background-color : #fff;
 		border-radius : 7px;
-		border : 2px solid #dedede;
 		position : relative;
 	}
 	.chatHeader{
@@ -50,7 +49,9 @@ kw-chat .chat {
 		border-bottom : 2px solid #dedede;
 		padding : 10px;
 		position : absolute;
-		background-color : #fff;
+		background-color : #d53939;
+		color : #2e2d3e;
+		border-radius : 7px 7px 0 0;
 		h2 {
 			margin : 0;
 			float : left;
@@ -62,6 +63,8 @@ kw-chat .chat {
 	.chatMessages {
 		overflow-y : auto;
 		height : 100%;
+		border-radius : 7px;
+		border : 2px solid #dedede;
 	}
 	.sendMess {
 		height : 20%;

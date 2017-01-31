@@ -1,10 +1,5 @@
 <section class="chat">
 	<div class="chatWindow">
-		<div class="chatHeader">
-			<h2>Chat</h2>
-			<button class="logOff">Log out</button>
-			<div class="clear"></div>
-		</div>
 		<div class="chatMessages" id="scrollW" scroll-glue="glued">
 			<ul>
 				<li ng-repeat="message in chat.messages | orderBy: 'timestamp'">

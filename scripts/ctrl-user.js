@@ -36,6 +36,9 @@ app.controller('UserCtrl', function($http, $rootScope, $localStorage, kwFactory)
 						 		let form = document.getElementById("loginForm");
 							 	form.reset();
 
+							 	/* Vérification du token et passage au chat */
+							 	kwFactory.verifToken($localStorage.token);
+
 						 	} else if(data.data.result.status == 'failure'){
 						 		kwFactory.error(data.data.result.message);
 							}
