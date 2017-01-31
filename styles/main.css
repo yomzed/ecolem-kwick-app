@@ -22,12 +22,13 @@ kw-login {
   width: 100%;
   max-width: 600px;
   margin: 0 auto; }
+  kw-login h2 {
+    color: #FFF; }
 
 .login-form {
   width: 80%;
   margin: 0 auto;
   padding: 20px;
-  border-radius: 25px;
   text-align: center; }
   .login-form input[type="text"], .login-form input[type="password"] {
     height: 40px;
@@ -39,18 +40,39 @@ kw-login {
     width: 90%;
     margin: 5px auto; }
   .login-form input[type="text"]:focus, .login-form input[type="password"]:focus {
-    border: 2px solid #C63C59;
+    border: 2px solid #d53939;
     outline: 0; }
 
 .valid, .error {
   width: 90%;
   margin: 5px auto;
-  padding: 10px; }
+  padding: 10px;
+  border-radius: 7px;
+  font-weight: 700; }
 
 .valid {
-  background-color: green; }
+  background-color: #587E00; }
 
 .error {
-  background-color: red; }
+  background-color: #d53939; }
+
+.btn {
+  padding: 10px 20px;
+  background-color: transparent;
+  margin: 10px 7px;
+  border-radius: 25px;
+  cursor: pointer; }
+  .btn.send {
+    border: 2px solid #d53939;
+    color: #d53939; }
+    .btn.send:hover {
+      background-color: #d53939;
+      color: #FFF; }
+  .btn.second {
+    border: 2px solid #FFB563;
+    color: #FFB563; }
+    .btn.second:hover {
+      background-color: #FFB563;
+      color: #FFF; }
 
 /*# sourceMappingURL=main.css.map */

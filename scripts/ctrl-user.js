@@ -11,6 +11,12 @@ app.controller('UserCtrl', function($http, $rootScope, $localStorage, kwFactory)
 	
 	user.signup = false; // Flag d'affichage inscription/connexion
 
+	/* Changement d'écran */
+	user.changeLogin = function() {
+		$rootScope.mess.status = false;
+		user.signup = true ? false : true;
+	}
+
 	/* Login */
 	user.login = function() {
 		$rootScope.mess.status = false;

@@ -2,26 +2,26 @@
 
 <!-- Formulaire de login -->
 	<div ng-hide="user.signup">
-		<h2>Log in</h2>
+		<h2>Log in to chat</h2>
 		<form ng-submit="user.login()" id="loginForm">
-			<div ng-class="{valid: mess.nature='valid', error: $rootScope.mess.nature='error'}" ng-show="mess.status">{{mess.detail}}</div>
+			<div ng-class="{valid: mess.nature='valid', error: mess.nature='error'}" ng-show="mess.status">{{mess.detail}}</div>
 			<input type="text" placeholder="Nickname" required ng-model="user.logname">
 			<input type="password" placeholder="Password" required ng-model="user.logpass">
-			<button type="submit">Log in</button>
-			<button class="sign" ng-click="user.signup = true">Sign up</button>
+			<button class="btn send" type="submit">Log in</button>
+			<button class="btn second" ng-click="user.signup = true; mess.status = false;">Register</button>
 		</form>
 	</div>
 
 <!-- Formulaire d'inscription -->
 	<div ng-show="user.signup">
-		<h2>Sign up</h2>
+		<h2>Register</h2>
 		<form ng-submit="user.signUp()" id="signForm">
 			<div ng-class="{valid: mess.nature='valid', error: mess.nature='error'}" ng-show="mess.status">{{mess.detail}}</div>
 			<input type="text" ng-model="user.name" placeholder="Nickname" required>
 			<input type="password" ng-model="user.pass" placeholder="Password" required>
 			<input type="password" ng-model="user.pass2" placeholder="Confirm password" required>
-			<button type="submit">Sign up</button>
-			<button ng-click="user.signup = false">Back</button>
+			<button class="btn send" type="submit">Send</button>
+			<button class="btn second" ng-click="user.signup = false; mess.status = false;">Back</button>
 		</form>
 	</div>
 

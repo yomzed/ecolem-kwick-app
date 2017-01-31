@@ -17,10 +17,10 @@
 
 		<main>
 		<!-- Vue du login -->
-			<kw-login ng-show="{{!$rootScope.status}}" ng-controller="UserCtrl as user"></kw-login>
+			<kw-login ng-show="!logStatus" ng-controller="UserCtrl as user"></kw-login>
 
 		<!-- Vue du chat -->
-			<kw-chat ng-show="{{$rootScope.status}}"></kw-chat>
+			<kw-chat ng-show="logStatus"></kw-chat>
 		</main>
 
 	</div>
@@ -31,5 +31,6 @@
 <!-- Scripts persos -->
 	<script src="scripts/main.js"></script>
 	<script src="scripts/ctrl-user.js"></script>
+	<script src="scripts/ctrl-chat.js"></script>
 </body>
 </html>

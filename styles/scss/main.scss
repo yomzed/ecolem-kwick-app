@@ -22,13 +22,15 @@ kw-login {
 	width : 100%;
 	max-width : 600px;
 	margin : 0 auto;
+	h2 {
+		color : #FFF;
+	}
 }
 
 .login-form {
   width: 80%;
   margin: 0 auto;
   padding: 20px;
-  border-radius: 25px;
   text-align: center;
   input {
     &[type="text"], &[type="password"] {
@@ -42,7 +44,7 @@ kw-login {
       margin: 5px auto;
     }
     &[type="text"]:focus, &[type="password"]:focus {
-      border: 2px solid #C63C59;
+      border: 2px solid #d53939;
       outline: 0;
     }
   }
@@ -52,12 +54,38 @@ kw-login {
   width: 90%;
   margin: 5px auto;
   padding: 10px;
+  border-radius : 7px;
+  font-weight : 700;
 }
 
 .valid {
-  background-color: green;
+  background-color: #587E00;
 }
 
 .error {
-  background-color: red;
+  background-color: #d53939;
+}
+
+.btn {
+	padding : 10px 20px;
+	background-color : transparent;
+	margin : 10px 7px;
+	border-radius : 25px;
+	cursor : pointer;
+	&.send {
+		border : 2px solid #d53939;
+		color : #d53939;
+		&:hover {
+			background-color : #d53939;
+			color : #FFF;
+		}
+	}
+	&.second {
+		border : 2px solid #FFB563;
+		color : #FFB563;
+		&:hover {
+			background-color : #FFB563;
+			color : #FFF;
+		}
+	}
 }

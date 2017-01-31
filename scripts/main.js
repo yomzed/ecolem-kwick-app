@@ -44,16 +44,16 @@ app.factory('kwFactory', function($http, $rootScope) {
 			return $http.jsonp(url);
 		},
 		/* Vérification de la validité du token */
-		verifToken : function(token, url){
+		verifToken : function(token){
 			if(token){
-				$http.jsonp(url+token)
+				$http.jsonp("http://greenvelvet.alwaysdata.net/kwick/api/user/logged/"+token)
 						 .then(function(rep){
-					console.log(rep.data.result.status);
-					let result = rep.data.result.status = "done" ? true : false;
+					var result = (rep.data.result.status == "done" ? true : false);
+					$rootScope.logStatus = result;
 					return result;
 				});
 			} else {
-				console.log("No data");
+				$rootScope.logStatus = false;
 				return false;
 			}
 		},
@@ -71,6 +71,12 @@ app.factory('kwFactory', function($http, $rootScope) {
 	}
 });
 
+/*app.run(function($localStorage, $rootScope, kwFactory){
+	$rootScope.logStatus = false;
+	if(!$localStorage.token){$localStorage.token = 0;}
+	$rootScope.logStatus = kwFactory.verifToken($localStorage.token);
+});*/
+
 /* Contrôleur principal */
 app.controller('MainCtrl',function($http, $rootScope, $localStorage, kwFactory) {
 	let main = this;
@@ -87,7 +93,7 @@ app.controller('MainCtrl',function($http, $rootScope, $localStorage, kwFactory) 
 
 	/* Vérification de la validité du token */
 	if(!$localStorage.token){$localStorage.token = 0;}
-	$rootScope.status = kwFactory.verifToken($localStorage.token, "http://greenvelvet.alwaysdata.net/kwick/api/user/logged/");
+	kwFactory.verifToken($localStorage.token);
 
 }); /* Fin contrôleur principal */
 
