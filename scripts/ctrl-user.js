@@ -56,6 +56,7 @@ app.controller('UserCtrl', function($http, $rootScope, $localStorage, kwFactory)
 							 		form.reset();
 							 		/* Retour au login */
 							 		user.signup = false;
+							 		kwFactory.valid(data.data.result.message);
 
 							 	} else if(data.data.result.status == 'failure'){
 							 		/* Affichage de l'erreur */
