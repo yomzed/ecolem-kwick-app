@@ -12,13 +12,14 @@
 	<h1>Kwick chat</h1>
 
 <!-- Vue du login -->
-	<kw-login ng-show="!$rootScope.token" ng-controller="UserCtrl as user"></kw-login>
+	<kw-login ng-show="!$localStorage.token" ng-controller="UserCtrl as user"></kw-login>
 
 <!-- Vue du chat -->
-	<kw-chat ng-show="$rootScope.token"></kw-chat>
+	<kw-chat ng-show="$localStorage.token"></kw-chat>
 
 
 <script src="node_modules/angular/angular.min.js"></script>
+<script src="node_modules/ngstorage/ngStorage.min.js"></script>
 <script src="scripts/main.js"></script>
 <script src="scripts/controllers.js"></script>
 </body>

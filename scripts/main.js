@@ -6,7 +6,7 @@ Yoan Martinez
 ------------------------- */
 
 // Création de l'application
-let app = angular.module('kwick-app', []);
+let app = angular.module('kwick-app', ['ngStorage']);
 
 app.config(function($sceDelegateProvider){
 	// Whitelist pour accéder à l'API sans erreur dans la console

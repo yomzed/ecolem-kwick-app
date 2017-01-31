@@ -6,14 +6,14 @@ Yoan Martinez
 ------------------------- */
 
 /* Contrôleur principal */
-app.controller('MainCtrl',function($http, $rootScope, kwFactory) {
+app.controller('MainCtrl',function($http, $rootScope, $localStorage, kwFactory) {
 	let main = this;
-	if(!$rootScope.token){$rootScope.token = 0;}
+	if(!$localStorage.token){$localStorage.token = 0;}
 
 }) /* Fin contrôleur principal */
 
 /* Contrôleur inscription/login */
-.controller('UserCtrl', function($http, $rootScope, kwFactory) {
+.controller('UserCtrl', function($http, $rootScope, $localStorage, kwFactory) {
 	let user = this;
 	user.mess = {
 								status : false, // Affichage d'une notif
@@ -33,9 +33,9 @@ app.controller('MainCtrl',function($http, $rootScope, kwFactory) {
 						 	if(data.data.result.status == 'done'){
 
 						 		/* Construction de la session */
-						 		$rootScope.user = { id   : data.data.result.id,
-																		login: user.logname };
-						 		$rootScope.token = data.data.result.token;
+						 		$localStorage.user = { id   : data.data.result.id,
+																			 login: user.logname };
+						 		$localStorage.token = data.data.result.token;
 
 						 		/* Vidage du formulaire */
 						 		let form = document.getElementById("loginForm");
