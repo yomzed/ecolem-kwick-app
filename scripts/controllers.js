@@ -8,7 +8,10 @@ Yoan Martinez
 /* Contrôleur principal */
 app.controller('MainCtrl',function($http, $rootScope, $localStorage, kwFactory) {
 	let main = this;
+
+	/* Vérification de la validité du token */
 	if(!$localStorage.token){$localStorage.token = 0;}
+	$rootScope.status = kwFactory.verifToken($localStorage.token, "http://greenvelvet.alwaysdata.net/kwick/api/user/logged/");
 
 }) /* Fin contrôleur principal */
 

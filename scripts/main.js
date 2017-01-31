@@ -42,11 +42,12 @@ app.factory('kwFactory', function($http) {
 			if(token){
 				$http.jsonp(url+token).then(function(rep){
 					console.log(rep.data.result.status);
-					return rep.data.result.status;
+					let result = rep.data.result.status = "done" ? true : false;
+					return result;
 				});
 			} else {
 				console.log("No data");
-				return "failure";
+				return false;
 			}
 		},
 		/* Erreur et notification */
