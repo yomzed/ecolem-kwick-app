@@ -12,6 +12,10 @@ body {
 	background-color : #2e2d3e;
 }
 
+ul { list-style : none; padding : 0;}
+
+.clear { clear : both; }
+
 header {
 	text-align : center;
 	height : 20%;
@@ -25,17 +29,39 @@ kw-login, kw-chat {
 	max-width : 600px;
 	height : 100%;
 	margin : 0 auto;
+}
+kw-login {
 	h2 {
 		color : #FFF;
 	}
 }
-
 kw-chat .chat {
 	height : 100%;
 	padding : 10px;
 	.chatWindow{
-		overflow-y : auto;
 		height : 80%;
+		background-color : #fff;
+		border-radius : 7px;
+		border : 2px solid #dedede;
+		position : relative;
+	}
+	.chatHeader{
+		width : 100%;
+		border-bottom : 2px solid #dedede;
+		padding : 10px;
+		position : absolute;
+		background-color : #fff;
+		h2 {
+			margin : 0;
+			float : left;
+		}
+		.logOff {
+			float: right;
+		}
+	}
+	.chatMessages {
+		overflow-y : auto;
+		height : 100%;
 	}
 	.sendMess {
 		height : 20%;

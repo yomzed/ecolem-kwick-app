@@ -15,8 +15,7 @@ app.controller('ChatCtrl', function($http, $rootScope, $localStorage, kwFactory)
 		for(let i = 0; i < chat.messages.length; i++){
 			chat.messages[i].date = kwFactory.dateFormat(chat.messages[i].timestamp);
 		}
-	}).then(function(){
-		kwFactory.scrollAuto();
+		$rootScope.glued = true
 	});
 
 	/* Envoi d'un nouveau message */

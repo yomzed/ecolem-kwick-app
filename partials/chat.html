@@ -1,10 +1,19 @@
 <section class="chat">
-	<div class="chatWindow" id="scrollW">
-		<li ng-repeat="message in chat.messages | orderBy: 'timestamp'">
-			{{message.user_name}}<br>
-			{{message.content}}<br>
-			{{message.date}}
-		</li>
+	<div class="chatWindow">
+		<div class="chatHeader">
+			<h2>Chat</h2>
+			<button class="logOff">Log out</button>
+			<div class="clear"></div>
+		</div>
+		<div class="chatMessages" id="scrollW" scroll-glue="glued">
+			<ul>
+				<li ng-repeat="message in chat.messages | orderBy: 'timestamp'">
+					{{message.user_name}}<br>
+					{{message.content}}<br>
+					{{message.date}}
+				</li>
+			</ul>
+		</div>
 	</div>
 	<div class="sendMess">
 		<form ng-submit="chat.send()">

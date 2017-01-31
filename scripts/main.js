@@ -6,7 +6,7 @@ Yoan Martinez
 ------------------------- */
 
 // Création de l'application
-let app = angular.module('kwick-app', ['ngStorage']);
+let app = angular.module('kwick-app', ['ngStorage', 'luegg.directives']);
 
 app.config(function($sceDelegateProvider){
 	// Whitelist pour accéder à l'API sans erreur dans la console
@@ -73,10 +73,11 @@ app.factory('kwFactory', function($http, $rootScope) {
 			let date = new Date(timestamp*1000);
 			return date.toLocaleString('fr');
 		},
+		/* Auto-scroll down à l'envoi de message */
 		scrollAuto : function(){
     let element = document.getElementById("scrollW");
     element.scrollTop = element.scrollHeight;
-}
+		}
 	}
 });
 
