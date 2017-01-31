@@ -1,22 +1,12 @@
 /* ----------------------
 Utilisation de l'API Kwick
-Contrôleurs Angular
+Contrôleur Login/Sign up
 Ecole multimédia - 30/01/2017
 Yoan Martinez
 ------------------------- */
 
-/* Contrôleur principal */
-app.controller('MainCtrl',function($http, $rootScope, $localStorage, kwFactory) {
-	let main = this;
-
-	/* Vérification de la validité du token */
-	if(!$localStorage.token){$localStorage.token = 0;}
-	$rootScope.status = kwFactory.verifToken($localStorage.token, "http://greenvelvet.alwaysdata.net/kwick/api/user/logged/");
-
-}) /* Fin contrôleur principal */
-
 /* Contrôleur inscription/login */
-.controller('UserCtrl', function($http, $rootScope, $localStorage, kwFactory) {
+app.controller('UserCtrl', function($http, $rootScope, $localStorage, kwFactory) {
 	let user = this;
 	user.mess = {
 								status : false, // Affichage d'une notif
@@ -80,13 +70,3 @@ app.controller('MainCtrl',function($http, $rootScope, $localStorage, kwFactory) 
 	} /* Fin inscription */
 
 });
-
-/* Réponse erreur token 
-Object
-kwick:
-	completed_in : "0.160"
-	status : "ok"
-	version : "1.0"
-	Object result :
-		message : "wrong token. Access denied"
-		status : "failure" */

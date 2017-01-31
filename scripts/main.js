@@ -1,6 +1,6 @@
 /* ----------------------
 Utilisation de l'API Kwick
-App config
+App config & main controller
 Ecole multimédia - 30/01/2017
 Yoan Martinez
 ------------------------- */
@@ -63,6 +63,16 @@ app.factory('kwFactory', function($http) {
 		}
 	}
 });
+
+/* Contrôleur principal */
+app.controller('MainCtrl',function($http, $rootScope, $localStorage, kwFactory) {
+	let main = this;
+
+	/* Vérification de la validité du token */
+	if(!$localStorage.token){$localStorage.token = 0;}
+	$rootScope.status = kwFactory.verifToken($localStorage.token, "http://greenvelvet.alwaysdata.net/kwick/api/user/logged/");
+
+}); /* Fin contrôleur principal */
 
 /* ucfirst de PHP importé au JS */
 function ucfirst(string){
