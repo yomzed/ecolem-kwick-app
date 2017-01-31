@@ -1,0 +1,63 @@
+* {
+	box-sizing : border-box;
+	transition : all 0.1s;
+}
+
+html, body, .contenu { height : 100%; }
+
+body {
+	font-family : "Lato", Helvetica, Arial, sans-serif;
+	color : #222;
+	background-color : #2e2d3e;
+}
+
+header {
+	text-align : center;
+	h1 { margin : 0; }
+	img { max-width : 300px;}
+}
+
+kw-login {
+	display : block;
+	width : 100%;
+	max-width : 600px;
+	margin : 0 auto;
+}
+
+.login-form {
+  width: 80%;
+  margin: 0 auto;
+  padding: 20px;
+  border-radius: 25px;
+  text-align: center;
+  input {
+    &[type="text"], &[type="password"] {
+      height: 40px;
+      padding: 5px 8px;
+      background-color: #FFF;
+      border-radius: 7px;
+      border: 2px solid #dedede;
+      box-shadow: none;
+      width: 90%;
+      margin: 5px auto;
+    }
+    &[type="text"]:focus, &[type="password"]:focus {
+      border: 2px solid #C63C59;
+      outline: 0;
+    }
+  }
+}
+
+.valid, .error {
+  width: 90%;
+  margin: 5px auto;
+  padding: 10px;
+}
+
+.valid {
+  background-color: green;
+}
+
+.error {
+  background-color: red;
+}

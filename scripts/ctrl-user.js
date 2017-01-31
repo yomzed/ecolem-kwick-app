@@ -8,16 +8,12 @@ Yoan Martinez
 /* Contrôleur inscription/login */
 app.controller('UserCtrl', function($http, $rootScope, $localStorage, kwFactory) {
 	let user = this;
-	user.mess = {
-								status : false, // Affichage d'une notif
-								detail : "", 		// Texte de la notif
-								nature : "" 		// "valid" ou "error"
-							}; 
+	
 	user.signup = false; // Flag d'affichage inscription/connexion
 
 	/* Login */
 	user.login = function() {
-		user.mess.status = false;
+		$rootScope.mess.status = false;
 		let url = 'http://greenvelvet.alwaysdata.net/kwick/api/login/'+user.logname+'/'+user.logpass;
 
 		/* Appel API */
@@ -43,7 +39,7 @@ app.controller('UserCtrl', function($http, $rootScope, $localStorage, kwFactory)
 	/* Inscription */
 	user.signUp = function() {
 		if(user.pass == user.pass2) {
-			user.mess.status = false;
+			$rootScope.mess.status = false;
 			let url = "http://greenvelvet.alwaysdata.net/kwick/api/signup/"+user.name+"/"+user.pass;
 
 			/* Appel API */
@@ -56,6 +52,7 @@ app.controller('UserCtrl', function($http, $rootScope, $localStorage, kwFactory)
 							 		form.reset();
 							 		/* Retour au login */
 							 		user.signup = false;
+							 		/* Affichage validation d'inscription */
 							 		kwFactory.valid(data.data.result.message);
 
 							 	} else if(data.data.result.status == 'failure'){

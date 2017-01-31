@@ -9,14 +9,21 @@
 </head>
 <body ng-controller="MainCtrl as main">
 
-	<h1>Kwick chat</h1>
+	<div class='contenu'>
 
-<!-- Vue du login -->
-	<kw-login ng-show="{{!$rootScope.status}}" ng-controller="UserCtrl as user"></kw-login>
+		<header>
+			<h1><img src="img/logo.png" alt="Kwick chat"></h1>
+		</header>
 
-<!-- Vue du chat -->
-	<kw-chat ng-show="{{$rootScope.status}}"></kw-chat>
+		<main>
+		<!-- Vue du login -->
+			<kw-login ng-show="{{!$rootScope.status}}" ng-controller="UserCtrl as user"></kw-login>
 
+		<!-- Vue du chat -->
+			<kw-chat ng-show="{{$rootScope.status}}"></kw-chat>
+		</main>
+
+	</div>
 
 <!-- AngularJS -->
 	<script src="node_modules/angular/angular.min.js"></script>

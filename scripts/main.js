@@ -23,16 +23,22 @@ app.directive('kwLogin', function(){
 		templateUrl: 'partials/user.html'
 	};
 })
-.directive('kwChat', function(){
-	return {
-		restrict: 'E',
-		templateUrl: 'partials/chat.html',
-	};
+   .directive('kwChat', function(){
+	   return {
+		   restrict: 'E',
+		   templateUrl: 'partials/chat.html',
+	   };
 });
 
 // Stockage des fonctions
-app.factory('kwFactory', function($http) {
+app.factory('kwFactory', function($http, $rootScope) {
 	return {
+		testPing : function(){
+			$http.jsonp("http://greenvelvet.alwaysdata.net/kwick/api/ping")
+					 .then(function(rep){
+					 	return rep.data.result.ready;
+					 });
+		},
 		/* Récupération des données de l'API */
 		recupJson : function(url){
 			return $http.jsonp(url);
@@ -40,7 +46,8 @@ app.factory('kwFactory', function($http) {
 		/* Vérification de la validité du token */
 		verifToken : function(token, url){
 			if(token){
-				$http.jsonp(url+token).then(function(rep){
+				$http.jsonp(url+token)
+						 .then(function(rep){
 					console.log(rep.data.result.status);
 					let result = rep.data.result.status = "done" ? true : false;
 					return result;
@@ -52,14 +59,14 @@ app.factory('kwFactory', function($http) {
 		},
 		/* Erreur et notification */
 		error : function(mess){
-			user.mess.status = true;
-			user.mess.detail = ucfirst(mess);
-			user.mess.nature = "error";
+			$rootScope.mess.status = true;
+			$rootScope.mess.detail = ucfirst(mess);
+			$rootScope.mess.nature = "error";
 		},
 		valid : function(mess){
-			user.mess.status = true;
-			user.mess.detail = ucfirst(mess);
-			user.mess.nature = "valid";
+			$rootScope.mess.status = true;
+			$rootScope.mess.detail = ucfirst(mess);
+			$rootScope.mess.nature = "valid";
 		}
 	}
 });
@@ -67,6 +74,16 @@ app.factory('kwFactory', function($http) {
 /* Contrôleur principal */
 app.controller('MainCtrl',function($http, $rootScope, $localStorage, kwFactory) {
 	let main = this;
+	$rootScope.mess = {
+								status : false, // Affichage d'une notif
+								detail : "", 		// Texte de la notif
+								nature : "" 		// "valid" ou "error"
+							}; 
+
+	/* Test de réponse du serveur */
+	if(kwFactory.testPing() == false){
+		kwFactory.error("API connection is broken. Please try later.");
+	}
 
 	/* Vérification de la validité du token */
 	if(!$localStorage.token){$localStorage.token = 0;}

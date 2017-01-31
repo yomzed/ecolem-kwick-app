@@ -4,7 +4,7 @@
 	<div ng-hide="user.signup">
 		<h2>Log in</h2>
 		<form ng-submit="user.login()" id="loginForm">
-			<div ng-class="{valid: user.mess.nature='valid', error: user.mess.nature='error'}" ng-show="user.mess.status">{{user.mess.detail}}</div>
+			<div ng-class="{valid: mess.nature='valid', error: $rootScope.mess.nature='error'}" ng-show="mess.status">{{mess.detail}}</div>
 			<input type="text" placeholder="Nickname" required ng-model="user.logname">
 			<input type="password" placeholder="Password" required ng-model="user.logpass">
 			<button type="submit">Log in</button>
@@ -16,7 +16,7 @@
 	<div ng-show="user.signup">
 		<h2>Sign up</h2>
 		<form ng-submit="user.signUp()" id="signForm">
-			<div ng-class="{valid: user.mess.nature='valid', error: user.mess.nature='error'}" ng-show="user.mess.status">{{user.mess.detail}}</div>
+			<div ng-class="{valid: mess.nature='valid', error: mess.nature='error'}" ng-show="mess.status">{{mess.detail}}</div>
 			<input type="text" ng-model="user.name" placeholder="Nickname" required>
 			<input type="password" ng-model="user.pass" placeholder="Password" required>
 			<input type="password" ng-model="user.pass2" placeholder="Confirm password" required>
