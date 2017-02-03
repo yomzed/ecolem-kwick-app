@@ -24,15 +24,20 @@ app.controller('ChatCtrl', ['$http', '$scope', '$rootScope', '$localStorage', '$
 	$scope.$watch(function(rootScope){ return rootScope.logStatus; },
 								function(newValue, oldValue){
 									if(newValue == true){
-										$rootScope.interval = $interval(chat.tec, 2000);
+										$rootScope.interval = $interval(chat.tec, 1000);
 									}
 								});
 		
 
 	/* Récupération des messages du chat */
 	chat.content = function(){
-		let url = kwConst.url + "talk/list/" + $localStorage.token + "/1483290869";
+		/* Définition du timestamp pour afficher les messages des deux derniers jours */
+		let lastWeek = new Date();
+   	lastWeek.setDate(lastWeek.getDate() - 7);
+   	let timestamp = Math.round(lastWeek.getTime() / 1000);
 
+		let url = kwConst.url + "talk/list/" + $localStorage.token + "/" + timestamp;
+		
 		/* Appel API */
 		$http.jsonp(url).then(function(rep){
 			if(chat.messages.length == rep.data.result.talk.length){
@@ -60,13 +65,15 @@ app.controller('ChatCtrl', ['$http', '$scope', '$rootScope', '$localStorage', '$
 												});
 											});	
 			}
+
+			kwFactory.verifToken($localStorage.token);
 		});
 	} /* Fin récupération des messages */
 
 	/* Liste des membres actifs */
 	chat.members = function(){
 		let url = kwConst.url + "user/logged/" + $localStorage.token;
-
+		kwFactory.verifToken($localStorage.token);
 		/* Appel API */
 		$http.jsonp(url).then(function(rep){
 			if(rep.data.result.status == "done"){
@@ -84,7 +91,7 @@ app.controller('ChatCtrl', ['$http', '$scope', '$rootScope', '$localStorage', '$
 	/* Envoi d'un nouveau message */
 	chat.send = function(){
 		if(chat.newMess){
-			let newMess = encodeURI(chat.newMess);
+			let newMess = encodeURIComponent(chat.newMess);
 			let url = kwConst.url + "say/" + $localStorage.token + "/" + $localStorage.user.id + "/" + newMess;
 
 			/* Appel API */
@@ -93,6 +100,7 @@ app.controller('ChatCtrl', ['$http', '$scope', '$rootScope', '$localStorage', '$
 				form.reset();
 				/* Update des messages */
 				chat.tec();
+				chat.glue = true;
 			});
 		}
 	} /* Fin envoi de message */

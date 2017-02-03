@@ -21,7 +21,7 @@ app.controller('UserCtrl', ['$http', '$rootScope', '$localStorage', 'kwFactory',
 						if(data.data.result.status == 'done'){
 
 							/* Construction de la session */
-							$localStorage.user = { id   : data.data.result.id,
+							$localStorage.user  = { id   : data.data.result.id,
 																		 login: user.logname };
 							$localStorage.token = data.data.result.token;
 
@@ -36,6 +36,7 @@ app.controller('UserCtrl', ['$http', '$rootScope', '$localStorage', 'kwFactory',
 							kwFactory.error(data.data.result.message);
 						}
 				 });
+		
 	} /* Fin login */
 
 	/* Inscription */
@@ -49,15 +50,19 @@ app.controller('UserCtrl', ['$http', '$rootScope', '$localStorage', 'kwFactory',
 					 .then(function(data) {
 							if(data.data.result.status == 'done'){
 
-							 	/* Vidage du formulaire */
-							 	let form = document.getElementById("loginForm");
-							 	form.reset();
+							 	/* Construction de la session */
+								$localStorage.user  = { id   : data.data.result.id,
+																		 	login: user.logname };
+								$localStorage.token = data.data.result.token;
 
-							 	/* Retour au login */
-							 	user.signup = false;
-							 	
-							 	/* Affichage validation d'inscription */
-							 	kwFactory.valid(data.data.result.message);
+								/* Vidage du formulaire */
+								let form = document.getElementById("loginForm");
+								form.reset();
+								user.signup = false;
+
+								/* Vérification du token et passage au chat */
+								kwFactory.verifToken($localStorage.token);
+
 
 							} else if(data.data.result.status == 'failure'){
 							 	/* Affichage de l'erreur */
@@ -70,5 +75,6 @@ app.controller('UserCtrl', ['$http', '$rootScope', '$localStorage', 'kwFactory',
 			kwFactory.error("Password doesn't match");
 		}
 	} /* Fin inscription */
+
 
 }]);

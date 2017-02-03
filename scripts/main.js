@@ -25,8 +25,7 @@ app.config(function($sceDelegateProvider){
 
 /* Constantes */
 app.constant('kwConst', {
-	"url" : "http://greenvelvet.alwaysdata.net/kwick/api/",
-	"couleurs" : ['#5DA0A2', '#F03861', '#1F5F8B', '#FF7E67', "#3EC483", "#B74242", "#2E94B9", "#A64942"]
+	"url" : "http://greenvelvet.alwaysdata.net/kwick/api/"
 });
 
 /* Définition des vues */
