@@ -1,3 +1,11 @@
+@charset "UTF-8";
+/* ----------------------
+Utilisation de l'API Kwick
+Fichier SCSS
+Ecole multimédia - 30/01/2017
+Yoan Martinez
+------------------------- */
+/* Structurel */
 * {
   box-sizing: border-box;
   transition: all 0.1s; }
@@ -8,20 +16,16 @@ html, body, .contenu {
 main {
   height: 80%; }
 
+body {
+  font-family: "Ubuntu", Helvetica, Arial, sans-serif;
+  color: #222;
+  background-color: #2e2d3e; }
+
 .contenu {
   opacity: 0; }
 
 .contenu.active {
   opacity: 1; }
-
-body {
-  font-family: "Lato", Helvetica, Arial, sans-serif;
-  color: #222;
-  background-color: #2e2d3e; }
-
-ul {
-  list-style: none;
-  padding: 0; }
 
 .clear {
   clear: both; }
@@ -39,6 +43,90 @@ header {
   header img {
     max-height: 100%; }
 
+footer {
+  width: 100%;
+  height: 10%;
+  position: absolute;
+  bottom: 0;
+  text-align: center; }
+  footer a {
+    color: rgba(255, 255, 255, 0.1);
+    font-size: 2.3em;
+    display: inline-block;
+    margin: 15px 10px 0; }
+    footer a:hover {
+      color: rgba(255, 255, 255, 0.5); }
+
+/* Eléments UI */
+ul {
+  list-style: none;
+  padding: 0; }
+
+input {
+  font-family: "Ubuntu", Arial, sans-serif; }
+  input[type="text"], input[type="password"] {
+    height: 40px;
+    padding: 5px 8px;
+    background-color: #FFF;
+    border-radius: 7px;
+    border: 2px solid #dedede;
+    box-shadow: none;
+    width: 90%;
+    margin: 5px auto; }
+  input[type="text"]:focus, input[type="password"]:focus {
+    border: 2px solid #d53939;
+    outline: 0; }
+  input.new {
+    width: 80%; }
+
+.btn {
+  padding: 10px 20px;
+  background-color: transparent;
+  margin: 10px 7px;
+  border-radius: 25px;
+  cursor: pointer; }
+  .btn.send {
+    border: 2px solid #d53939;
+    color: #d53939; }
+    .btn.send:hover {
+      background-color: #d53939;
+      color: #FFF; }
+  .btn.second {
+    border: 2px solid #FFB563;
+    color: #FFB563; }
+    .btn.second:hover {
+      background-color: #FFB563;
+      color: #FFF; }
+  .btn.third {
+    border: 2px solid #7B3C59;
+    color: #7B3C59; }
+    .btn.third:hover {
+      background-color: #7B3C59;
+      color: #fff; }
+  .btn.members {
+    position: absolute;
+    bottom: 0;
+    left: 0; }
+  .btn.logoff {
+    position: absolute;
+    bottom: 0;
+    right: 0; }
+
+/* Messages d'erreur */
+.valid, .error {
+  width: 90%;
+  margin: 5px auto;
+  padding: 10px;
+  border-radius: 7px;
+  font-weight: 700; }
+
+.valid {
+  background-color: #ffb563; }
+
+.error {
+  background-color: #d53939; }
+
+/* Login */
 kw-login, kw-chat {
   display: block;
   width: 100%;
@@ -49,6 +137,13 @@ kw-login, kw-chat {
 kw-login h2 {
   color: #FFF; }
 
+.login-form {
+  width: 80%;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center; }
+
+/* Affichage du chat */
 kw-chat .chat {
   height: 100%;
   padding: 10px; }
@@ -79,66 +174,7 @@ kw-chat .chat {
     border: 2px solid #dedede;
     overflow-wrap: break-word; }
   kw-chat .chat .sendMess {
-    height: 20%; }
-
-input[type="text"], input[type="password"] {
-  height: 40px;
-  padding: 5px 8px;
-  background-color: #FFF;
-  border-radius: 7px;
-  border: 2px solid #dedede;
-  box-shadow: none;
-  width: 90%;
-  margin: 5px auto; }
-input[type="text"]:focus, input[type="password"]:focus {
-  border: 2px solid #d53939;
-  outline: 0; }
-input.new {
-  width: 80%; }
-
-.login-form {
-  width: 80%;
-  margin: 0 auto;
-  padding: 20px;
-  text-align: center; }
-
-.valid, .error {
-  width: 90%;
-  margin: 5px auto;
-  padding: 10px;
-  border-radius: 7px;
-  font-weight: 700; }
-
-.valid {
-  background-color: #ffb563; }
-
-.error {
-  background-color: #d53939; }
-
-.btn {
-  padding: 10px 20px;
-  background-color: transparent;
-  margin: 10px 7px;
-  border-radius: 25px;
-  cursor: pointer; }
-  .btn.send {
-    border: 2px solid #d53939;
-    color: #d53939; }
-    .btn.send:hover {
-      background-color: #d53939;
-      color: #FFF; }
-  .btn.second {
-    border: 2px solid #FFB563;
-    color: #FFB563; }
-    .btn.second:hover {
-      background-color: #FFB563;
-      color: #FFF; }
-  .btn.third {
-    border: 2px solid #7B3C59;
-    color: #7B3C59; }
-    .btn.third:hover {
-      background-color: #7B3C59;
-      color: #fff; }
+    height: 10%; }
 
 .item {
   color: #dedede;
@@ -152,18 +188,9 @@ input.new {
     color: #aeaeae;
     font-style: italic;
     font-size: 0.8em; }
-  .item .online {
-    color: #99f899;
+  .item i {
     font-size: 0.8em !important; }
-
-.btn.members {
-  position: absolute;
-  bottom: 0;
-  left: 0; }
-
-.btn.logoff {
-  position: absolute;
-  bottom: 0;
-  right: 0; }
+  .item .online {
+    color: #99f899; }
 
 /*# sourceMappingURL=main.css.map */

@@ -10,7 +10,8 @@ app.controller('ChatCtrl', ['$http', '$scope', '$rootScope', '$localStorage', '$
 	let chat 				 = this;
 	chat.messages 	 = [];
 	chat.membersList = [];
-	/* Scroll en bas de la page */
+
+	/* Scroll auto */
 	chat.glue = true;
 
 	/* Update auto */
@@ -31,13 +32,20 @@ app.controller('ChatCtrl', ['$http', '$scope', '$rootScope', '$localStorage', '$
 	/* Récupération des messages du chat */
 	chat.content = function(){
 		let url = kwConst.url + "talk/list/" + $localStorage.token + "/1483290869";
+
+		/* Appel API */
 		$http.jsonp(url).then(function(rep){
 			if(chat.messages.length == rep.data.result.talk.length){
+				/* Pas d'update si pas de nouveaux messages */
 				return false;
 			} else {
+				/* Injection des messages */
 				chat.messages = rep.data.result.talk;
+
+				/* Traitement de la date */
 				chat.messages.forEach(function(elem){
 					elem.date = kwFactory.dateFormat(elem.timestamp);
+					/* Déclaration du paramètre en ligne ou non */
 					elem.online = false;
 				});
 
@@ -49,9 +57,7 @@ app.controller('ChatCtrl', ['$http', '$scope', '$rootScope', '$localStorage', '$
 														elem.online = true;
 													}
 												});
-											});
-
-				
+											});	
 			}
 		});
 	} /* Fin récupération des messages */
@@ -60,12 +66,11 @@ app.controller('ChatCtrl', ['$http', '$scope', '$rootScope', '$localStorage', '$
 	chat.members = function(){
 		let url = kwConst.url + "user/logged/" + $localStorage.token;
 
+		/* Appel API */
 		$http.jsonp(url).then(function(rep){
-
 			if(rep.data.result.status == "done"){
 				chat.membersList = rep.data.result.user;
 			}
-
 		});
 	} /* Fin liste des membres */
 
@@ -74,9 +79,12 @@ app.controller('ChatCtrl', ['$http', '$scope', '$rootScope', '$localStorage', '$
 		if(chat.newMess){
 			let newMess = encodeURI(chat.newMess);
 			let url = kwConst.url + "say/" + $localStorage.token + "/" + $localStorage.user.id + "/" + newMess;
+
+			/* Appel API */
 			$http.jsonp(url).then(function(rep){
 				let form = document.getElementById('formSend');
 				form.reset();
+				/* Update des messages */
 				chat.tec();
 			});
 		}

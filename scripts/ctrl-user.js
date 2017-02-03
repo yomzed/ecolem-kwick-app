@@ -12,7 +12,7 @@ app.controller('UserCtrl', ['$http', '$rootScope', '$localStorage', 'kwFactory',
 
 	/* Login */
 	user.login = function() {
-		$rootScope.mess.status = false;
+		$rootScope.mess.status = false; // Affichage du message d'erreur/validation
 		let url = kwConst.url + 'login/' + user.logname + '/' + user.logpass;
 
 		/* Appel API */
@@ -52,8 +52,10 @@ app.controller('UserCtrl', ['$http', '$rootScope', '$localStorage', 'kwFactory',
 							 	/* Vidage du formulaire */
 							 	let form = document.getElementById("loginForm");
 							 	form.reset();
+
 							 	/* Retour au login */
 							 	user.signup = false;
+							 	
 							 	/* Affichage validation d'inscription */
 							 	kwFactory.valid(data.data.result.message);
 

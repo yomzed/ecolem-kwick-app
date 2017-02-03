@@ -14,7 +14,7 @@
 		<!-- Affichage des messages -->
 		<div class="chatMessages" id="scrollW" scroll-glue="chat.glue">
 			<div class="item" ng-repeat="message in chat.messages | orderBy: 'timestamp'">
-				<span class="online" ng-show="message.online"><i class="fa fa-circle" aria-hidden="true"></i></span>
+				<span ng-class="{online: message.online}"><i class="fa fa-circle" aria-hidden="true"></i></span>
 				<span class="userName"> {{message.user_name}} : </span>
 				<span class="messContent">{{message.content}}</span>
 				<span class="date"> ~ {{message.date}}</span>
