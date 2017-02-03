@@ -5,9 +5,11 @@
 		<!-- Liste des utilisateurs connectés -->
 		<div id="memberList">
 			<div id="opacityId">
-				<p ng-repeat="member in chat.membersList">
-					{{member}} <span ng-show="member.you">(you)</span>
-				</p>
+				<h3>Online users</h3>
+				<div ng-repeat="member in chat.membersList">
+					<span class="online"><i class="fa fa-circle" aria-hidden="true"></i></span>
+					{{member.name}} <span ng-show="member.you"><em>(you)</em></span>
+				</div>
 			</div>
 		</div>
 

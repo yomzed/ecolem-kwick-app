@@ -147,6 +147,8 @@ kw-login h2 {
 kw-chat .chat {
   height: 100%;
   padding: 10px; }
+  kw-chat .chat i {
+    font-size: 0.8em !important; }
   kw-chat .chat .chatWindow {
     height: 80%;
     background-color: #fff;
@@ -188,9 +190,8 @@ kw-chat .chat {
     color: #aeaeae;
     font-style: italic;
     font-size: 0.8em; }
-  .item i {
-    font-size: 0.8em !important; }
-  .item .online {
-    color: #99f899; }
+
+.online {
+  color: #99f899; }
 
 /*# sourceMappingURL=main.css.map */

@@ -153,6 +153,7 @@ kw-login {
 
 /* Affichage du chat */
 kw-chat .chat {
+	i {font-size : 0.8em !important;}
 	height : 100%;
 	padding: 10px;
 	.chatWindow{
@@ -205,8 +206,7 @@ kw-chat .chat {
 		font-style : italic;
 		font-size : 0.8em;
 	}
-	i {font-size : 0.8em !important;}
-	.online {
+}
+.online {
 		color : #99f899;
 	}
-}

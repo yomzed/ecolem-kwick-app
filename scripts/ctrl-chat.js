@@ -53,7 +53,8 @@ app.controller('ChatCtrl', ['$http', '$scope', '$rootScope', '$localStorage', '$
 				$scope.$watch(chat.membersList,
 											function(newValue, oldValue){
 												chat.messages.forEach(function(elem){
-													if(chat.membersList.indexOf(elem.user_name) != -1){
+													let pos = chat.membersList.map(function(e){return e.name}).indexOf(elem.user_name);
+													if(pos != -1){
 														elem.online = true;
 													}
 												});
@@ -69,7 +70,13 @@ app.controller('ChatCtrl', ['$http', '$scope', '$rootScope', '$localStorage', '$
 		/* Appel API */
 		$http.jsonp(url).then(function(rep){
 			if(rep.data.result.status == "done"){
-				chat.membersList = rep.data.result.user;
+				chat.membersList = [];
+				rep.data.result.user.forEach(function(elem){
+					let user = false;
+					if(elem == $localStorage.user.login) { user = true; }
+					chat.membersList.push({name : elem, you : user});
+				});
+				//chat.membersList = rep.data.result.user;
 			}
 		});
 	} /* Fin liste des membres */
