@@ -71,12 +71,12 @@ app.controller('ChatCtrl', ['$http', '$scope', '$rootScope', '$localStorage', '$
 		$http.jsonp(url).then(function(rep){
 			if(rep.data.result.status == "done"){
 				chat.membersList = [];
+				/* Vérification pour poser un flag lorsque le membre est l'utilisateur */
 				rep.data.result.user.forEach(function(elem){
 					let user = false;
 					if(elem == $localStorage.user.login) { user = true; }
 					chat.membersList.push({name : elem, you : user});
 				});
-				//chat.membersList = rep.data.result.user;
 			}
 		});
 	} /* Fin liste des membres */
