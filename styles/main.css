@@ -8,6 +8,12 @@ html, body, .contenu {
 main {
   height: 80%; }
 
+.contenu {
+  opacity: 0; }
+
+.contenu.active {
+  opacity: 1; }
+
 body {
   font-family: "Lato", Helvetica, Arial, sans-serif;
   color: #222;
@@ -22,10 +28,14 @@ ul {
 
 header {
   text-align: center;
-  height: 20%; }
+  height: 20%;
+  position: relative;
+  max-width: 600px;
+  margin: 0 auto; }
   header h1 {
     margin: 0;
-    height: 100%; }
+    height: 100%;
+    display: inline; }
   header img {
     max-height: 100%; }
 
@@ -46,45 +56,51 @@ kw-chat .chat {
     height: 80%;
     background-color: #fff;
     border-radius: 7px;
-    position: relative; }
-  kw-chat .chat .chatHeader {
-    width: 100%;
-    border-bottom: 2px solid #dedede;
-    padding: 10px;
+    position: relative;
+    display: flex;
+    flex-direction: column-reverse; }
+  kw-chat .chat #memberList {
     position: absolute;
-    background-color: #d53939;
-    color: #2e2d3e;
-    border-radius: 7px 7px 0 0; }
-    kw-chat .chat .chatHeader h2 {
-      margin: 0;
-      float: left; }
-    kw-chat .chat .chatHeader .logOff {
-      float: right; }
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 100%;
+    border-radius: 7px;
+    background-color: #ffb563;
+    transition: all 0.3s; }
+    kw-chat .chat #memberList #opacityId {
+      opacity: 0;
+      padding: 10px 5px; }
   kw-chat .chat .chatMessages {
+    padding: 0 5px;
     overflow-y: auto;
     height: 100%;
     border-radius: 7px;
-    border: 2px solid #dedede; }
+    border: 2px solid #dedede;
+    overflow-wrap: break-word; }
   kw-chat .chat .sendMess {
     height: 20%; }
+
+input[type="text"], input[type="password"] {
+  height: 40px;
+  padding: 5px 8px;
+  background-color: #FFF;
+  border-radius: 7px;
+  border: 2px solid #dedede;
+  box-shadow: none;
+  width: 90%;
+  margin: 5px auto; }
+input[type="text"]:focus, input[type="password"]:focus {
+  border: 2px solid #d53939;
+  outline: 0; }
+input.new {
+  width: 80%; }
 
 .login-form {
   width: 80%;
   margin: 0 auto;
   padding: 20px;
   text-align: center; }
-  .login-form input[type="text"], .login-form input[type="password"] {
-    height: 40px;
-    padding: 5px 8px;
-    background-color: #FFF;
-    border-radius: 7px;
-    border: 2px solid #dedede;
-    box-shadow: none;
-    width: 90%;
-    margin: 5px auto; }
-  .login-form input[type="text"]:focus, .login-form input[type="password"]:focus {
-    border: 2px solid #d53939;
-    outline: 0; }
 
 .valid, .error {
   width: 90%;
@@ -94,7 +110,7 @@ kw-chat .chat {
   font-weight: 700; }
 
 .valid {
-  background-color: #587E00; }
+  background-color: #ffb563; }
 
 .error {
   background-color: #d53939; }
@@ -117,5 +133,37 @@ kw-chat .chat {
     .btn.second:hover {
       background-color: #FFB563;
       color: #FFF; }
+  .btn.third {
+    border: 2px solid #7B3C59;
+    color: #7B3C59; }
+    .btn.third:hover {
+      background-color: #7B3C59;
+      color: #fff; }
+
+.item {
+  color: #dedede;
+  margin: 10px 0; }
+  .item .userName {
+    font-weight: 700;
+    color: #333; }
+  .item .messContent {
+    color: #333; }
+  .item .date {
+    color: #aeaeae;
+    font-style: italic;
+    font-size: 0.8em; }
+  .item .online {
+    color: #99f899;
+    font-size: 0.8em !important; }
+
+.btn.members {
+  position: absolute;
+  bottom: 0;
+  left: 0; }
+
+.btn.logoff {
+  position: absolute;
+  bottom: 0;
+  right: 0; }
 
 /*# sourceMappingURL=main.css.map */

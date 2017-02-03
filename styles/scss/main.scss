@@ -6,10 +6,13 @@
 html, body, .contenu { height : 100%; }
 main {height : 80%;}
 
+.contenu { opacity : 0;}
+.contenu.active { opacity : 1;}
+
 body {
-	font-family : "Lato", Helvetica, Arial, sans-serif;
-	color : #222;
-	background-color : #2e2d3e;
+	font-family     : "Lato", Helvetica, Arial, sans-serif;
+	color           : #222;
+	background-color: #2e2d3e;
 }
 
 ul { list-style : none; padding : 0;}
@@ -19,16 +22,19 @@ ul { list-style : none; padding : 0;}
 header {
 	text-align : center;
 	height : 20%;
-	h1 { margin : 0; height : 100%; }
+	position : relative;
+	max-width : 600px;
+	margin : 0 auto;
+	h1 { margin : 0; height : 100%; display: inline;}
 	img { max-height: 100%;}
 }
 
 kw-login, kw-chat {
-	display : block;
-	width : 100%;
-	max-width : 600px;
-	height : 100%;
-	margin : 0 auto;
+	display  : block;
+	width    : 100%;
+	max-width: 600px;
+	height   : 100%;
+	margin   : 0 auto;
 }
 kw-login {
 	h2 {
@@ -37,34 +43,36 @@ kw-login {
 }
 kw-chat .chat {
 	height : 100%;
-	padding : 10px;
+	padding: 10px;
 	.chatWindow{
-		height : 80%;
-		background-color : #fff;
-		border-radius : 7px;
+		height          : 80%;
+		background-color: #fff;
+		border-radius   : 7px;
 		position : relative;
+		display         : flex;
+		flex-direction  : column-reverse;
 	}
-	.chatHeader{
-		width : 100%;
-		border-bottom : 2px solid #dedede;
-		padding : 10px;
+	#memberList {
 		position : absolute;
-		background-color : #d53939;
-		color : #2e2d3e;
-		border-radius : 7px 7px 0 0;
-		h2 {
-			margin : 0;
-			float : left;
-		}
-		.logOff {
-			float: right;
+		top : 0;
+		left : 0;
+		width : 0%;
+		height : 100%;
+		border-radius : 7px;
+		background-color : #ffb563;
+		transition : all 0.3s;
+		#opacityId {
+			opacity : 0;
+			padding : 10px 5px;
 		}
 	}
 	.chatMessages {
-		overflow-y : auto;
-		height : 100%;
-		border-radius : 7px;
-		border : 2px solid #dedede;
+		padding 		 : 0 5px; 
+		overflow-y   : auto;
+		height       : 100%;
+		border-radius: 7px;
+		border       : 2px solid #dedede;
+		overflow-wrap: break-word;
 	}
 	.sendMess {
 		height : 20%;
@@ -72,12 +80,7 @@ kw-chat .chat {
 	
 }
 
-.login-form {
-  width: 80%;
-  margin: 0 auto;
-  padding: 20px;
-  text-align: center;
-  input {
+input {
     &[type="text"], &[type="password"] {
       height: 40px;
       padding: 5px 8px;
@@ -92,7 +95,14 @@ kw-chat .chat {
       border: 2px solid #d53939;
       outline: 0;
     }
-  }
+    &.new { width : 80%;}
+ }
+
+.login-form {
+  width: 80%;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center;
 }
 
 .valid, .error {
@@ -104,7 +114,7 @@ kw-chat .chat {
 }
 
 .valid {
-  background-color: #587E00;
+  background-color: #ffb563;
 }
 
 .error {
@@ -133,4 +143,44 @@ kw-chat .chat {
 			color : #FFF;
 		}
 	}
+	&.third {
+		border : 2px solid #7B3C59;
+		color : #7B3C59;
+		&:hover {
+			background-color : #7B3C59;
+			color : #fff;
+		}
+	}
+}
+
+.item {
+	color : #dedede;
+	margin : 10px 0;
+	.userName {
+		font-weight : 700;
+		color: #333;
+	}
+	.messContent {
+		color : #333;
+	}
+	.date {
+		color : #aeaeae;
+		font-style : italic;
+		font-size : 0.8em;
+	}
+	.online {
+		color : #99f899;
+    font-size : 0.8em !important;
+	}
+}
+
+.btn.members {
+	position : absolute;
+	bottom : 0;
+	left : 0;
+}
+.btn.logoff {
+	position : absolute;
+	bottom : 0;
+	right : 0;
 }

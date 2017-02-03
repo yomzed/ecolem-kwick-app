@@ -1,36 +1,42 @@
 <!DOCTYPE html>
-<html ng-app='kwick-app'>
+<html ng-app='kwick-app' lang="en">
 <head>
 	<meta charset="utf-8">
 	<title>Kwick test app</title>
 	<link href="https://fonts.googleapis.com/css?family=Lato:400,400i,700,700i" rel="stylesheet">
 	<link rel="stylesheet" href="node_modules/normalize.css/normalize.css">
+	<link rel="stylesheet" href="https://use.fontawesome.com/f44721e1fa.css">
 	<link rel="stylesheet" href="styles/main.css">
+	<link rel="icon" href="favicon.ico">
 </head>
+
 <body ng-controller="MainCtrl as main">
 
-	<div class='contenu'>
+	<section class='contenu' ng-class="{active: showWindow}"> <!-- Ajout d'un flag ici pour éviter le clignottement au chargement de la page -->
 
 		<header>
+			<!-- Liens membres/déconnexion actifs si connecté -->
+			<a ng-show="logStatus" ng-click="main.toggle()" class="btn second members"><i class="fa fa-users" aria-hidden="true"></i></a>
+			<a ng-show="logStatus" ng-click="main.logOut()" class="btn third logoff"><i class="fa fa-power-off" aria-hidden="true"></i></a>
+
 			<h1><img src="img/logo.png" alt="Kwick chat"></h1>
 		</header>
 
 		<main>
-		<!-- Vue du login -->
+			<!-- Vues selon l'état de la connexion -->
 			<kw-login ng-show="!logStatus" ng-controller="UserCtrl as user"></kw-login>
-
-		<!-- Vue du chat -->
 			<kw-chat ng-show="logStatus" ng-controller="ChatCtrl as chat"></kw-chat>
 		</main>
 
-	</div>
+	</section>
 
 <!-- AngularJS -->
 	<script src="node_modules/angular/angular.min.js"></script>
 	<script src="node_modules/ngstorage/ngStorage.min.js"></script>
 	<script src="node_modules/angularjs-scroll-glue/src/scrollglue.js"></script>
-<!-- Scripts persos -->
+<!-- Scripts de l'app -->
 	<script src="scripts/main.js"></script>
+	<script src="scripts/ctrl-main.js"></script>
 	<script src="scripts/ctrl-user.js"></script>
 	<script src="scripts/ctrl-chat.js"></script>
 </body>
